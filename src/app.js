@@ -37,7 +37,7 @@ app.post("/shorten", (req, res) => {
 
 app.get("/go/:hash", (req, res) => {
   var short = new Shorten()
-  if (req.params.hash.length !== 8) {
+  if (req.params.hash.length <= 8) {  // prevent server-load if user enter wrong hash format
     return res.send("Uuh Ooh Uuh - Not found")
   };
   var found = short.findByHash(req.params.hash)
